@@ -1,0 +1,69 @@
+.app {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 0 40px;
+}
+
+
+.songInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.songInfos > .headline {
+    font-size: 35px;
+    margin: 0;
+}
+
+.songInfos > h3 {
+    margin: 0;
+    text-align: center;
+}
+
+.songInfos > .album {
+    font-size: 25px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.volume {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 300px;
+    max-width: 80vw;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.volumeBarOuter {
+    height: 10px;
+    width: 80%;
+    display: block;
+    background-color: gray;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.volumeBarInner {
+    background-color: black;
+    height: 100%;
+    transition: width .3s ease;
+}
+
+.image {
+    aspect-ratio: 1;
+    width: 300px;
+    max-width: 80vw;
+    transition: background 3s ease;
+    border-radius: 5px;
+    background-size: 100%;
+    background-position: center center;
+}
