@@ -18,10 +18,10 @@ jobs:
 
     - name: Build
       run: |
+        CI=false
         npm install
         npm run build
       
     - name: Deploy
       run: | 
-        CI=false
         ssh-pass -p "$SSH_PASSWORD" ssh $SSH_USER@$SSH_HOST
