@@ -24,4 +24,6 @@ jobs:
       
     - name: Deploy
       run: | 
-        sshpass -p "$SSH_PASSWORD" ssh $SSH_USER@$SSH_HOST
+        echo $SSH_USER
+        echo $SSH_HOST
+        sshpass -p $SSH_PASSWORD ssh $SSH_USER@$SSH_HOST
