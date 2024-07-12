@@ -23,4 +23,5 @@ jobs:
       
     - name: Deploy
       run: | 
+        CI=false
         ssh-pass -p "$SSH_PASSWORD" ssh $SSH_USER@$SSH_HOST
