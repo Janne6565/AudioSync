@@ -27,5 +27,9 @@ jobs:
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
         SSH_HOST: ${{ vars.SSH_HOST }}
+        DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
       run: | 
-        dir
+        ssh $SSH_USERNAME@$SSH_HOST mkdir test
+        $SSH_PASSWORD
+        scp -r ./build/* $SSH_USERNAME@$SSH_HOST:$DEPLOY_PATH
+        $SSH_PASSWORD
