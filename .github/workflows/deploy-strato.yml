@@ -25,9 +25,9 @@ jobs:
     - name: Deploy
       env:
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        SSH_USER: ${{ secrets.SSH_USER }}
-        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+        SSH_HOST: ${{ vars.SSH_HOST }}
       run: | 
         echo $SSH_USER
         echo $SSH_HOST
-        sshpass -p $SSH_PASSWORD ssh $SSH_USER@$SSH_HOST
+        sshpass -p $SSH_PASSWORD ssh $SSH_USERNAME@$SSH_HOST
