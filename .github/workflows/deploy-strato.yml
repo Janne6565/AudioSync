@@ -27,5 +27,7 @@ jobs:
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
         SSH_HOST: ${{ vars.SSH_HOST }}
+        DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
       run: | 
-        dir
+        echo "$SSH_PASSWORD" | sshpass ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST "rm -rf $DEPLOY_PATH && mkdir -p $DEPLOY_PATH"
+        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r ./build/* $SSH_USERNAME@$SSH_HOST:/$DEPLOY_PATH
