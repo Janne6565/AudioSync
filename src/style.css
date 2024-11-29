@@ -1,9 +1,22 @@
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 .app {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     padding: 0 40px;
 }
 

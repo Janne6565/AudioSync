@@ -3,6 +3,7 @@ export type EventType = "songName" | "albumName" | "albumCover" | "artist" | "vo
 export interface WebsocketMessage {
     type: EventType;
     value: string | number;
+    updated: number;
 }
 
 function AudioSocket(url: string, messageCallback: Function) {

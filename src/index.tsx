@@ -1,7 +1,11 @@
 import React from 'react';
+import TimeAgo from 'javascript-time-ago';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
+import de from 'javascript-time-ago/locale/de';
+import en from 'javascript-time-ago/locale/en';
+
+TimeAgo.addDefaultLocale(en);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

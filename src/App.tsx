@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import './App.css';
 import AudioWebSocketConnection, {EventType, WebsocketMessage} from "./util/AudioSocket";
 import "./style.css";
 import CONFIG from "./config.music_sync";
 import {VolumeUp} from "@mui/icons-material";
+import ReactTimeAgo from 'react-time-ago';
 
 function App() {
     const [songName, setSongName] = useState<string | number>("");
@@ -11,6 +11,7 @@ function App() {
     const [artist, setArtist] = useState<string | number>("");
     const [albumCover, setAlbumCover] = useState<string | number>("");
     const [volume, setVolume] = useState<string | number>(0);
+    const [lastUpdated, setLastUpdated] = useState<number | undefined>(undefined);
     const callbacks = {
         "songName": setSongName,
         "albumCover": setAlbumCover,
@@ -18,11 +19,17 @@ function App() {
         "artist": setArtist,
         "volume": setVolume
     };
+    const takeIntoAccount = ["songName", "albumCover", "albumName", "artist"];
 
     document.title = "Audio Listener";
 
     const messageCallback = useCallback((message: WebsocketMessage) => {
-        callbacks[message.type](message.value);
+        if (message.type in callbacks) {
+            callbacks[message.type](message.value);
+        }
+        if (takeIntoAccount.findIndex(a => a == message.type) != -1) {
+            setLastUpdated(lsUpdate => Math.max(lsUpdate ?? 0, message.updated));
+        }
     }, []);
 
     useEffect(() => {
@@ -47,6 +54,7 @@ function App() {
                 </div>
                 <div>{volume}%</div>
             </div>
+            {lastUpdated ? <div>Last Updated: <ReactTimeAgo date={lastUpdated} locale="de-DE"/> </div> : <div>Loading</div>}
         </div>
     );
 }
