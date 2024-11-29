@@ -1,9 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import AudioWebSocketConnection, {EventType, WebsocketMessage} from "./util/AudioSocket";
 import "./style.css";
 import CONFIG from "./config.music_sync";
 import {VolumeUp} from "@mui/icons-material";
 import ReactTimeAgo from 'react-time-ago';
+import {CircularProgress} from '@mui/material';
 
 function App() {
     const [songName, setSongName] = useState<string | number>("");
@@ -46,7 +48,14 @@ function App() {
                 <h3 className={"headline"}>{songName} - {artist}</h3>
                 <h3 className={"album"}>{albumName}</h3>
             </div>
-            <div className="image" style={{backgroundImage: "url(" + albumCover as string + ")"}}/>
+            <LazyLoadImage
+            alt={songName as string}
+            height={"300px"}
+            src={albumCover as string ?? ""} // use normal <img> attributes as props
+            className={"image"}
+            placeholder={<CircularProgress/>}
+            visibleByDefault={true}
+            width={"300px"} />
             <div className="volume">
                 <VolumeUp/>
                 <div className={"volumeBarOuter"}>
